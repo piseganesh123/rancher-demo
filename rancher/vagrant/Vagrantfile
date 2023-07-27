@@ -19,7 +19,14 @@ end
 
 $private_nic_type = x.fetch('net').fetch('private_nic_type')
 
+# Install vagrant-disksize to allow resizing the vagrant box disk.
+unless Vagrant.has_plugin?("vagrant-disksize")
+  raise  Vagrant::Errors::VagrantError.new, "vagrant-disksize plugin is missing. Please install it using 'vagrant plugin install vagrant-disksize' and rerun 'vagrant up'"
+end
+
 Vagrant.configure(2) do |config|
+  config.disksize.size = '15GB'
+
   if Vagrant.has_plugin?("vagrant-proxyconf")
      config.proxy.enabled = { docker: false }
   end
