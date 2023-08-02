@@ -44,6 +44,12 @@ resource "google_compute_instance" "rancher_server" {
     google_compute_firewall.rancher_fw_allowall,
   ]
 
+  scheduling {
+    preemptible = "true"
+    provisioning_model = "SPOT"
+    automatic_restart = "false"
+  }
+  
   name         = "${var.prefix}-rancher-server"
   machine_type = var.machine_type
   zone         = var.gcp_zone
