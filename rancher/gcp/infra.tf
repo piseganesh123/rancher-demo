@@ -113,6 +113,12 @@ resource "google_compute_instance" "quickstart_node" {
     google_compute_firewall.rancher_fw_allowall,
   ]
 
+  scheduling {
+    preemptible = "true"
+    provisioning_model = "SPOT"
+    automatic_restart = "false"
+  }
+  
   name         = "${var.prefix}-quickstart-node"
   machine_type = var.machine_type
   zone         = var.gcp_zone
