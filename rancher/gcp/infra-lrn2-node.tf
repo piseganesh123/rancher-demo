@@ -6,7 +6,7 @@ resource "google_compute_address" "quickstart_node_address" {
 }
 
 # GCP compute instance for creating a single node workload cluster
-resource "google_compute_instance" "quickstart_node" {
+resource "google_compute_instance" "ranch_k8s_node-2" {
   depends_on = [
     google_compute_firewall.rancher_fw_allowall,
   ]
