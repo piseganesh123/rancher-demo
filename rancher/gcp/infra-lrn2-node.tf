@@ -2,7 +2,7 @@
 
 # GCP Public Compute Address for quickstart node
 resource "google_compute_address" "quickstart_node_address" {
-  name = "quickstart-node-ipv4-address"
+  name = "qs-node-2-ipv4-address"
 }
 
 # GCP compute instance for creating a single node workload cluster
@@ -17,7 +17,7 @@ resource "google_compute_instance" "quickstart_node" {
     automatic_restart = "false"
   }
   
-  name         = "${var.prefix}-quickstart-node"
+  name         = "${var.prefix}-qs-node-2"
   machine_type = var.machine_type
   zone         = var.gcp_zone
 
@@ -43,7 +43,7 @@ resource "google_compute_instance" "quickstart_node" {
     "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
-      public_ip        = google_compute_address.quickstart_node_address.address
+#      public_ip        = google_compute_address.quickstart_node_address.address
     }
   )
 
