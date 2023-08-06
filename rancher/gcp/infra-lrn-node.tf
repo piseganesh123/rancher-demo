@@ -43,7 +43,7 @@ resource "google_compute_instance" "quickstart_node" {
     "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
-      public_ip        = google_compute_address.quickstart_node_address.address
+#      public_ip        = google_compute_address.quickstart_node_address.address
     }
   )
 
