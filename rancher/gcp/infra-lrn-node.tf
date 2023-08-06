@@ -1,9 +1,9 @@
 # GCP infrastructure resources
 
 # GCP Public Compute Address for quickstart node
-#resource "google_compute_address" "quickstart_node_address" {
-#  name = "quickstart-node-ipv4-address"
-#}
+resource "google_compute_address" "quickstart_node_address" {
+  name = "quickstart-node-ipv4-address"
+}
 
 # GCP compute instance for creating a single node workload cluster
 resource "google_compute_instance" "quickstart_node" {
@@ -29,9 +29,9 @@ resource "google_compute_instance" "quickstart_node" {
 
   network_interface {
     network = "default"
-#    access_config {
-#      nat_ip = google_compute_address.quickstart_node_address.address
-#    }
+    access_config {
+      nat_ip = google_compute_address.quickstart_node_address.address
+    }
   }
 
   metadata = {
@@ -43,7 +43,7 @@ resource "google_compute_instance" "quickstart_node" {
     "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
-#      public_ip        = google_compute_address.quickstart_node_address.address
+      public_ip        = google_compute_address.quickstart_node_address.address
     }
   )
 
