@@ -3,6 +3,7 @@
 # GCP Public Compute Address for quickstart node
 resource "google_compute_address" "ranch_k8s_node2_address" {
   name = "qs-node-2-ipv4-address"
+  address_type = "INTERNAL"
 }
 
 # GCP compute instance for creating a single node workload cluster
@@ -31,6 +32,7 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
     network = "default"
     access_config {
       nat_ip = google_compute_address.ranch_k8s_node2_address.address
+      #google_compute_instance.ranch_k8s_node-2.network_interface.0.access_config.0.nat_ip
     }
   }
 
