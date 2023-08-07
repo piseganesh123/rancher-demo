@@ -24,6 +24,6 @@ resource "rancher2_cluster_v2" "quickstart_workload" {
 resource "rancher2_cluster_v2" "learner2_node" {
   provider = rancher2.admin
 
-  name               = "learner2_node_cluster"
+  name               = "l2cluster"
   kubernetes_version = var.workload_kubernetes_version
 }
