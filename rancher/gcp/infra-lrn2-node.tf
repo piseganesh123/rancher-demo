@@ -3,7 +3,7 @@
 # GCP Public Compute Address for quickstart node
 resource "google_compute_address" "ranch_k8s_node2_address" {
   name = "qs-node-2-ipv4-address"
-  address_type = "INTERNAL"
+  address_type = "EXTERNAL"
 }
 
 # GCP compute instance for creating a single node workload cluster
