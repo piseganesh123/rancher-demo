@@ -1,3 +1,4 @@
+#Ganesh 7 Aug 23 - Code is configured to create one management node only hence need to add code accordingly.
 # GCP infrastructure resources
 
 # GCP Public Compute Address for quickstart node
