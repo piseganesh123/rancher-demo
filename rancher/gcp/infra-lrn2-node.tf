@@ -30,7 +30,7 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
   network_interface {
     network = "default"
     access_config {
-      nat_ip = google_compute_address.quickstart_node_address.address
+      nat_ip = google_compute_address.ranch_k8s_node2_address.address
     }
   }
 
@@ -44,7 +44,7 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
     {
       register_command = module.rancher_common.custom_cluster_command
 #      public_ip        = google_compute_address.quickstart_node_address.address
-      public_ip        = google_compute_address.qs-node-2-ipv4-address.address
+      public_ip        = google_compute_address.ranch_k8s_node2_address.address
     }
   )
 
