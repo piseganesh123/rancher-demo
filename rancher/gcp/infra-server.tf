@@ -51,7 +51,8 @@ resource "google_compute_instance" "rancher_server" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.sles.self_link
+      image = "ubuntu-2204-jammy-v20230727"
+      size = "15"
     }
   }
 
