@@ -26,6 +26,7 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
   boot_disk {
     initialize_params {
       image = "ubuntu-2204-jammy-v20230727"
+      size = "15"
     }
   }
 
