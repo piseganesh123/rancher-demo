@@ -30,10 +30,10 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
 
   network_interface {
     network = "default"
-    access_config {
-      nat_ip = google_compute_address.ranch_k8s_node2_address.address
-      #google_compute_instance.ranch_k8s_node-2.network_interface.0.access_config.0.nat_ip
-    }
+#    access_config {
+#      nat_ip = google_compute_address.ranch_k8s_node2_address.address
+#      #google_compute_instance.ranch_k8s_node-2.network_interface.0.access_config.0.nat_ip
+#    }
   }
 
   metadata = {
