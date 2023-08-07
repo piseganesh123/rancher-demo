@@ -19,3 +19,11 @@ resource "rancher2_cluster_v2" "quickstart_workload" {
   name               = var.workload_cluster_name
   kubernetes_version = var.workload_kubernetes_version
 }
+
+# Create second learner node
+resource "rancher2_cluster_v2" "learner2_node" {
+  provider = rancher2.admin
+
+  name               = "learner2_node_cluster"
+  kubernetes_version = var.workload_kubernetes_version
+}
