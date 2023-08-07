@@ -25,6 +25,7 @@ resource "google_compute_instance" "quickstart_node" {
   boot_disk {
     initialize_params {
       image = "ubuntu-2204-jammy-v20230727"
+      size = "15"
     }
   }
 
