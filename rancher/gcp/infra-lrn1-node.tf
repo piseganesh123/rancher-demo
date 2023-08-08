@@ -1,10 +1,10 @@
 # GCP infrastructure resources
 
 # GCP Public Compute Address for quickstart node
-resource "google_compute_address" "quickstart_node_address" {
-  name = "quickstart-node-ipv4-address"
-  address_type = "EXTERNAL"
-}
+#resource "google_compute_address" "quickstart_node_address" {
+#  name = "quickstart-node-ipv4-address"
+#  address_type = "EXTERNAL"
+#}
 
 # GCP compute instance for creating a single node workload cluster
 resource "google_compute_instance" "quickstart_node" {
@@ -18,13 +18,14 @@ resource "google_compute_instance" "quickstart_node" {
     automatic_restart = "false"
   }
   
-  name         = "${var.prefix}-qs-node"
+  name         = "${var.prefix}-learner1-node"
   machine_type = var.machine_type
   zone         = var.gcp_zone
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-2204-jammy-v20230727"
+      image = "debian-11-bullseye-v20230711"
+      #"ubuntu-2204-jammy-v20230727"
       size = "15"
     }
   }
@@ -32,7 +33,7 @@ resource "google_compute_instance" "quickstart_node" {
   network_interface {
     network = "default"
     access_config {
-      nat_ip = google_compute_address.quickstart_node_address.address
+#      nat_ip = google_compute_address.quickstart_node_address.address
     }
   }
 
@@ -45,7 +46,8 @@ resource "google_compute_instance" "quickstart_node" {
     "${path.module}/files/userdata_quickstart_node.template",
     {
       register_command = module.rancher_common.custom_cluster_command
-      public_ip        = google_compute_address.quickstart_node_address.address
+#      public_ip        = google_compute_address.quickstart_node_address.address
+      public_ip        = self.public_ip
     }
   )
 
@@ -56,7 +58,8 @@ resource "google_compute_instance" "quickstart_node" {
 
     connection {
       type        = "ssh"
-      host        = self.network_interface.0.access_config.0.nat_ip
+#      host        = self.network_interface.0.access_config.0.nat_ip
+      host        = self.public_ip
       user        = local.node_username
       private_key = tls_private_key.global_key.private_key_pem
     }
