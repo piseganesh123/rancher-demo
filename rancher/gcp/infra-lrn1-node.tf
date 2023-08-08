@@ -44,7 +44,7 @@ resource "google_compute_instance" "learner1_node"{ #"quickstart_node"
   metadata_startup_script = templatefile(
     "${path.module}/files/userdata_quickstart_node.template",
     {
-      register_command = module.rancher_common.learner1_cluster_command #custom_cluster_command
+      register_command = module.rancher_common.learner_one_cluster_command #custom_cluster_command
       public_ip        = google_compute_address.learner1_node_address.address
 #      public_ip        = self.public_ip
     }
