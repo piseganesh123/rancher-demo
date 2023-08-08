@@ -34,3 +34,6 @@ rancher_version = "2.7.5"
 
 # Kubernetes version to use for managed workload cluster
 workload_kubernetes_version = "v1.24.14+rke2r1"
+
+#learner node declaration
+learner_one_cluster_name = ""

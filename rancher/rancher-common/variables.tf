@@ -71,3 +71,8 @@ variable "rancher_helm_repository" {
   description = "The helm repository, where the Rancher helm chart is installed from"
   default     = "https://releases.rancher.com/server-charts/latest"
 }
+
+variable learner_one_cluster_name {
+  type        = string
+  description = "Name for created learning cluster"
+}
