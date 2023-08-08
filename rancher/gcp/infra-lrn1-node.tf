@@ -7,7 +7,7 @@ resource "google_compute_address" "learner1_node_address" {
 }
 
 # GCP compute instance for creating a single node workload cluster
-resource "google_compute_instance" "quickstart_node" {
+resource "google_compute_instance" "learner1_node"{ #"quickstart_node"
   depends_on = [
     google_compute_firewall.rancher_fw_allowall,
   ]
@@ -24,8 +24,7 @@ resource "google_compute_instance" "quickstart_node" {
 
   boot_disk {
     initialize_params {
-      image = "debian-11-bullseye-v20230711"
-      #"ubuntu-2204-jammy-v20230727"
+      image = "ubuntu-2204-jammy-v20230727"
       size = "15"
     }
   }
@@ -45,7 +44,7 @@ resource "google_compute_instance" "quickstart_node" {
   metadata_startup_script = templatefile(
     "${path.module}/files/userdata_quickstart_node.template",
     {
-      register_command = module.rancher_common.custom_cluster_command
+      register_command = module.rancher_common.learner1_qs_cluster #custom_cluster_command
       public_ip        = google_compute_address.learner1_node_address.address
 #      public_ip        = self.public_ip
     }

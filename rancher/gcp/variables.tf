@@ -25,7 +25,7 @@ variable "gcp_zone" {
 variable "prefix" {
   type        = string
   description = "Prefix added to names of all resources"
-  default     = "quickstart"
+  default     = "qs"
 }
 
 variable "machine_type" {
