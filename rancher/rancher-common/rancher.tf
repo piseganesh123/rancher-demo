@@ -21,10 +21,10 @@ resource "rancher2_cluster_v2" "quickstart_workload" {
 }
 # Create custom managed cluster for quickstart
 
-resource "rancher2_cluster_v2" "learner1_qs_cluster" {
+resource "rancher2_cluster_v2" "learner1_cluster" {
   provider = rancher2.admin
 
-  name               = "learner1_cluster"
+  name               = "learner1_qs_cluster"
   kubernetes_version = var.workload_kubernetes_version
 }
 
