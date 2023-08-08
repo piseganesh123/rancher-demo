@@ -33,7 +33,7 @@ resource "google_compute_instance" "quickstart_node" {
   network_interface {
     network = "default"
     access_config {
-      nat_ip = google_compute_address.quickstart_node_address.address
+      nat_ip = google_compute_address.learner1_node_address.address
     }
   }
 
