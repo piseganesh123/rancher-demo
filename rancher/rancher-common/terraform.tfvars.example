@@ -36,4 +36,4 @@ rancher_version = "2.7.5"
 workload_kubernetes_version = "v1.24.14+rke2r1"
 
 #learner node declaration
-learner_one_cluster_name = ""
+learner_1_cluster_name = ""

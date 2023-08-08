@@ -101,5 +101,5 @@ module "rancher_common" {
 
   workload_kubernetes_version = var.workload_kubernetes_version
   workload_cluster_name       = "quickstart-gcp-custom"
-  learner_one_cluster_name       = "lrn-1-cluster"
+  learner_1_cluster_name       = "learner-1-cluster"
 }
