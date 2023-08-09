@@ -21,7 +21,7 @@ resource "rancher2_bootstrap" "admin" {
 #}
 # Create custom managed cluster for quickstart
 
-resource "rancher2_cluster_v2" "learner1_cluster" {
+resource "rancher2_cluster_v2" "learner_1_cluster" {
   provider = rancher2.admin
 
   name               = var.learner_1_cluster_name
