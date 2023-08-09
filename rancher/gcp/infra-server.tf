@@ -107,4 +107,8 @@ module "rancher_common" {
 module "lab_preparations" {
   source = "../lab-prep"
   learner_2_cluster_name       = "learner-2-cluster"
+
+  rancher_server_dns = join(".", ["rancher", google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip, "sslip.io"])
+  admin_password     = var.rancher_server_admin_password
+
 }
