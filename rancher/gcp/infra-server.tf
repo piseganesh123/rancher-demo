@@ -103,3 +103,8 @@ module "rancher_common" {
   workload_cluster_name       = "quickstart-gcp-custom"
   learner_1_cluster_name       = "learner-1-cluster"
 }
+
+module "rancher_common" {
+  source = "../lab-prep"
+  learner_2_cluster_name       = "learner-2-cluster"
+}
