@@ -104,7 +104,7 @@ module "rancher_common" {
   learner_1_cluster_name       = "learner-1-cluster"
 }
 
-module "rancher_common" {
+module "lab_preparations" {
   source = "../lab-prep"
   learner_2_cluster_name       = "learner-2-cluster"
 }
