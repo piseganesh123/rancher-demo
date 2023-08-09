@@ -15,7 +15,7 @@ output "rancher_url" {
 #}
 
 output "learner_one_cluster_command" {
-  value       = rancher2_cluster_v2.learner_1_cluster.cluster_registration_token.0.insecure_node_command
+  value       = rancher2_cluster_v2.learner-1_cluster.cluster_registration_token.0.insecure_node_command
   description = "Docker command used to add learner 1 node to the quickstart cluster"
 }
 
