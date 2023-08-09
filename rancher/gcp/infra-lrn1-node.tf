@@ -2,7 +2,7 @@
 
 # GCP Public Compute Address for quickstart node
 resource "google_compute_address" "learner1_node_address" {
-  name = "quickstart-node-ipv4-address"
+  name = "learner1-node-ipv4-address"
   address_type = "EXTERNAL"
 }
 
