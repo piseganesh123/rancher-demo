@@ -72,7 +72,7 @@ variable "rancher_helm_repository" {
   default     = "https://releases.rancher.com/server-charts/latest"
 }
 
-variable learner-1_cluster_name {
+variable learner1_cluster_name {
   type        = string
   description = "Name for created learning cluster"
 }
