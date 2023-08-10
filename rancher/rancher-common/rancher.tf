@@ -24,7 +24,8 @@ resource "rancher2_bootstrap" "admin" {
 resource "rancher2_cluster_v2" "learner1_cluster" {
   provider = rancher2.admin
 
-  name               = var.learner1_cluster_name
+#  name               = var.learner1_cluster_name
+  name               = "learner1-cluster"
   kubernetes_version = var.workload_kubernetes_version
 }
 
