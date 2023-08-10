@@ -100,8 +100,10 @@ module "rancher_common" {
   admin_password     = var.rancher_server_admin_password
 
   workload_kubernetes_version = var.workload_kubernetes_version
-#  workload_cluster_name       = "quickstart-gcp-custom"
-  #learner1_cluster_name       = "learner1-cluster"
+
+ #worker node names 
+  workload_cluster_name       = "quickstart-gcp-custom"
+  learner1_cluster_name       = "learner1-cluster"
 }
 
 #module "lab_preparations" {
