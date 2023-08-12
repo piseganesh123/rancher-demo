@@ -81,7 +81,8 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
       type        = "ssh"
       host        = self.network_interface.0.access_config.0.nat_ip
 #      host        = self.public_ip
-      user        = local.node_username
+#      user        = local.node_username
+      user        = "gcpuser"
 #      private_key = tls_private_key.global_key.private_key_pem
       private_key = "../gcp/id_rsa"
     }
