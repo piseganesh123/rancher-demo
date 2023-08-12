@@ -4,6 +4,13 @@
 #}
 
 # Required
+
+variable "prefix" {
+  type        = string
+  description = "Prefix added to names of all resources"
+  default     = "qs"
+}
+
 variable "rancher_server_dns" {
   type        = string
   description = "DNS host name of the Rancher server"
