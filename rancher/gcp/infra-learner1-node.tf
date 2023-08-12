@@ -67,5 +67,6 @@ resource "google_compute_instance" "learner1_node"{ #"quickstart_node"
 
 module "lab-prep" {
   source = "../lab-prep"
+  gcp_project = "var.gcp_project"
   rancher_server_dns = join(".", ["rancher", google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip, "sslip.io"])  
 }
