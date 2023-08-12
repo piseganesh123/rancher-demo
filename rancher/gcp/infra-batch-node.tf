@@ -1,14 +1,14 @@
 # GCP infrastructure resources
 
 # GCP Public Compute Address for quickstart node
-resource "google_compute_address" "learner1_node_address" {
+resource "google_compute_address" "learner_node_address" {
   count = 2
   name = format("%s%s","node-ipv4-address",(count.index+2))
   address_type = "EXTERNAL"
 }
 
 # GCP compute instance for creating a single node workload cluster
-resource "google_compute_instance" "learner1_node"{ #"quickstart_node"
+resource "google_compute_instance" "learner_node"{ #"quickstart_node"
   depends_on = [
     google_compute_firewall.rancher_fw_allowall,
   ]
