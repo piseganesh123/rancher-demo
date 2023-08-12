@@ -31,7 +31,8 @@ variable "prefix" {
 variable "machine_type" {
   type        = string
   description = "Machine type used for all compute instances"
-  default     = "n1-standard-2"
+#  default     = "n1-standard-2"
+  default     = "e2-medium" 
 }
 
 variable "rancher_kubernetes_version" {
