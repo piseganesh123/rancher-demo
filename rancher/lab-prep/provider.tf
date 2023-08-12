@@ -4,6 +4,18 @@ terraform {
       source  = "rancher/rancher2"
       version = "3.0.0"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "4.24.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "2.4.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "4.0.4"
+    }    
   }
   required_version = ">= 1.0.0"
 }
@@ -27,24 +39,6 @@ provider "rancher2" {
   # ca_certs  = data.kubernetes_secret.rancher_cert.data["ca.crt"]
   token_key = rancher2_bootstrap.admin.token
   timeout   = "300s"
-}
-
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "4.24.0"
-    }
-    local = {
-      source  = "hashicorp/local"
-      version = "2.4.0"
-    }
-    tls = {
-      source  = "hashicorp/tls"
-      version = "4.0.4"
-    }
-  }
-  required_version = ">= 1.0.0"
 }
 
 provider "google" {
