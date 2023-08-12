@@ -1,25 +1,27 @@
 # GCP infrastructure resources
 
 # GCP Public Compute Address for quickstart node
-resource "google_compute_address" "learner_node_address" {
-  count = 2
-  name = format("%s%s","node-ipv4-address",(count.index+2))
+resource "google_compute_address" "learner2_node_address" {
+#  count = 2
+#  name = format("%s%s","node-ipv4-address",(count.index+2))
+  name = "learner1-node-ipv4-address"
   address_type = "EXTERNAL"
 }
 
 # GCP compute instance for creating a single node workload cluster
-resource "google_compute_instance" "learner_node"{ #"quickstart_node"
+resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
   depends_on = [
     google_compute_firewall.rancher_fw_allowall,
   ]
-  count = 2
+#  count = 2
   scheduling {
     preemptible = "true"
     provisioning_model = "SPOT"
     automatic_restart = "false"
   }
   
-  name         = format("%s%s","${var.prefix}-learner", (count.index+2))
+#  name         = format("%s%s","${var.prefix}-learner", (count.index+2))
+  name         = "${var.prefix}-learner2-node"
   #machine_type = var.machine_type
   machine_type = "e2-small"
   zone         = var.gcp_zone
@@ -34,7 +36,7 @@ resource "google_compute_instance" "learner_node"{ #"quickstart_node"
   network_interface {
     network = "default"
     access_config {
-      nat_ip = google_compute_address.learner1_node_address.address
+      nat_ip = google_compute_address.learner_node_address.address
     }
   }
 
