@@ -1,7 +1,7 @@
-variable learner_2_cluster_name {
-  type        = string
-  description = "Name for created learning cluster"
-}
+#variable learner_2_cluster_name {
+#  type        = string
+#  description = "Name for created learning cluster"
+#}
 
 # Required
 variable "rancher_server_dns" {
