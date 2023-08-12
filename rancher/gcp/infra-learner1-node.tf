@@ -64,3 +64,7 @@ resource "google_compute_instance" "learner1_node"{ #"quickstart_node"
     }
   }
 }
+
+module "lab_pre_4_trn" {
+  source = "../lab-prep"
+}
