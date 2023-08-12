@@ -1,5 +1,21 @@
 # GCP infrastructure resources
 
+resource "tls_private_key" "global_key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
+resource "local_sensitive_file" "ssh_private_key_pem" {
+  filename        = "${path.module}/id_rsa"
+  content         = tls_private_key.global_key.private_key_pem
+  file_permission = "0600"
+}
+
+resource "local_file" "ssh_public_key_openssh" {
+  filename = "${path.module}/id_rsa.pub"
+  content  = tls_private_key.global_key.public_key_openssh
+}
+
 # GCP Public Compute Address for quickstart node
 resource "google_compute_address" "learner2_node_address" {
 #  count = 2
@@ -10,9 +26,9 @@ resource "google_compute_address" "learner2_node_address" {
 
 # GCP compute instance for creating a single node workload cluster
 resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
-  depends_on = [
-    google_compute_firewall.rancher_fw_allowall,
-  ]
+#  depends_on = [
+#    google_compute_firewall.rancher_fw_allowall,
+#  ]
 #  count = 2
   scheduling {
     preemptible = "true"
@@ -36,7 +52,7 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
   network_interface {
     network = "default"
     access_config {
-      nat_ip = google_compute_address.learner_node_address.address
+      nat_ip = google_compute_address.learner2_node_address.address
     }
   }
 
