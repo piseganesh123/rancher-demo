@@ -1,26 +1,26 @@
-#Ganesh 7 Aug 23 - Code is configured to create one management node only hence need to add code accordingly.
 # GCP infrastructure resources
 
 # GCP Public Compute Address for quickstart node
-resource "google_compute_address" "ranch_k8s_node2_address" {
-  name = "qs-node-2-ipv4-address"
+resource "google_compute_address" "learner1_node_address" {
+  name = "learner1-node-ipv4-address"
   address_type = "EXTERNAL"
 }
 
 # GCP compute instance for creating a single node workload cluster
-resource "google_compute_instance" "ranch_k8s_node-2" {
+resource "google_compute_instance" "learner1_node"{ #"quickstart_node"
   depends_on = [
     google_compute_firewall.rancher_fw_allowall,
   ]
-
+  count = 2
   scheduling {
     preemptible = "true"
     provisioning_model = "SPOT"
     automatic_restart = "false"
   }
   
-  name         = "${var.prefix}-qs-node-2"
-  machine_type = var.machine_type
+  name         = format("%s%s","${var.prefix}-learner", (count.index+2))
+  #machine_type = var.machine_type
+  machine_type = "e2-small"
   zone         = var.gcp_zone
 
   boot_disk {
@@ -33,7 +33,7 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
   network_interface {
     network = "default"
     access_config {
-      nat_ip = google_compute_address.ranch_k8s_node2_address.address
+      nat_ip = google_compute_address.learner1_node_address.address
     }
   }
 
@@ -42,13 +42,14 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
     enable-oslogin = "FALSE"
   }
 
-  metadata_startup_script = templatefile(
-    "${path.module}/files/userdata_quickstart_node.template",
-    {
-      register_command = module.rancher_common.learner2_custom_cluster_command
-      public_ip        = google_compute_address.ranch_k8s_node2_address.address
-    }
-  )
+#  metadata_startup_script = templatefile(
+#    "${path.module}/files/userdata_quickstart_node.template",
+#    {
+#      register_command = module.rancher_common.learner_one_cluster_command #custom_cluster_command
+#      public_ip        = google_compute_address.learner1_node_address.address
+#      public_ip        = self.public_ip
+#    }
+#  )
 
   provisioner "remote-exec" {
     inline = [
@@ -58,6 +59,7 @@ resource "google_compute_instance" "ranch_k8s_node-2" {
     connection {
       type        = "ssh"
       host        = self.network_interface.0.access_config.0.nat_ip
+#      host        = self.public_ip
       user        = local.node_username
       private_key = tls_private_key.global_key.private_key_pem
     }
