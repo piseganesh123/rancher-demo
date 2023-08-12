@@ -2,7 +2,8 @@
 
 # GCP Public Compute Address for quickstart node
 resource "google_compute_address" "learner1_node_address" {
-  name = "learner1-node-ipv4-address"
+  count = 2
+  name = format("%s%s","node-ipv4-address",(count.index+2))
   address_type = "EXTERNAL"
 }
 
