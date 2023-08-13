@@ -1,7 +1,7 @@
 
 # File path and name of service account access token file.
 gcp_account_json = ""
-#/home/piseganesh123/key/XXX-training.json
+#/home/<user>/XXX-training.json
 
 # GCP project in which the quickstart will be deployed.
 gcp_project = ""
