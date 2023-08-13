@@ -20,7 +20,7 @@ resource "local_file" "ssh_public_key_openssh" {
 resource "google_compute_address" "learner2_node_address" {
 #  count = 2
 #  name = format("%s%s","node-ipv4-address",(count.index+2))
-  name = "learner1-node-ipv4-address"
+  name = "learner2-node-ipv4-address"
   address_type = "EXTERNAL"
 }
 
@@ -40,7 +40,7 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
 #  name         = "${var.prefix}-learner2-node"
   name = "learner2-node"
   #machine_type = var.machine_type
-  machine_type = "e2-small"
+  machine_type = "e2-medium"
   zone         = var.gcp_zone
 
   boot_disk {
