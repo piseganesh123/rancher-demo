@@ -63,14 +63,14 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
     enable-oslogin = "FALSE"
   }
 
-#  metadata_startup_script = templatefile(
-#    "${path.module}/files/userdata_quickstart_node.template",
-#    {
-#      register_command = module.rancher_common.learner_one_cluster_command #custom_cluster_command
-#      public_ip        = google_compute_address.learner1_node_address.address
-#      public_ip        = self.public_ip
-#    }
-#  )
+  metadata_startup_script = templatefile(
+    "${path.module}/../files/userdata_quickstart_node.template",
+    {
+      register_command = module.rancher_common.learner2_cluster #custom_cluster_command
+      public_ip        = google_compute_address.learner2_node_address.address
+      public_ip        = self.public_ip
+    }
+  )
 
   provisioner "remote-exec" {
     inline = [
