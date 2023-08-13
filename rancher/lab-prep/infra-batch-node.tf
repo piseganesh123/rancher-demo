@@ -58,8 +58,8 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
   }
 
   metadata = {
-    #ssh-keys       = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
-    ssh-keys = "gcpuser:../gcp/id_rsa.pub"
+    ssh-keys       = "${local.node_username}:${tls_private_key.global_key.public_key_openssh}"
+    #ssh-keys = "gcpuser:../gcp/id_rsa.pub"
     enable-oslogin = "FALSE"
   }
 
@@ -81,10 +81,10 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
       type        = "ssh"
       host        = self.network_interface.0.access_config.0.nat_ip
 #      host        = self.public_ip
-#      user        = local.node_username
-      user        = "gcpuser"
-#      private_key = tls_private_key.global_key.private_key_pem
-      private_key = "../gcp/id_rsa"
+      user        = local.node_username
+#      user        = "gcpuser"
+      private_key = tls_private_key.global_key.private_key_pem
+#      private_key = "../gcp/id_rsa"
     }
   }
 }
