@@ -86,3 +86,27 @@ output "learner5_custom_cluster_command" {
   description = "Docker command used to add a node to the learner2 cluster"
 }
 
+output "learner6_custom_cluster_command" {
+  value       = rancher2_cluster_v2.learner6_cluster.cluster_registration_token.0.insecure_node_command
+  description = "Docker command used to add a node to the learner2 cluster"
+}
+
+output "learner7_custom_cluster_command" {
+  value       = rancher2_cluster_v2.learner7_cluster.cluster_registration_token.0.insecure_node_command
+  description = "Docker command used to add a node to the learner2 cluster"
+}
+
+output "learner8_custom_cluster_command" {
+  value       = rancher2_cluster_v2.learner8_cluster.cluster_registration_token.0.insecure_node_command
+  description = "Docker command used to add a node to the learner2 cluster"
+}
+
+output "learner9_custom_cluster_command" {
+  value       = rancher2_cluster_v2.learner9_cluster.cluster_registration_token.0.insecure_node_command
+  description = "Docker command used to add a node to the learner2 cluster"
+}
+
+output "learner10_custom_cluster_command" {
+  value       = rancher2_cluster_v2.learner10_cluster.cluster_registration_token.0.insecure_node_command
+  description = "Docker command used to add a node to the learner2 cluster"
+}
