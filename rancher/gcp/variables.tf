@@ -13,13 +13,13 @@ variable "gcp_project" {
 variable "gcp_region" {
   type        = string
   description = "GCP region used for all resources."
-  default     = "us-east4"
+  default     = "asia-south1"
 }
 
 variable "gcp_zone" {
   type        = string
   description = "GCP zone used for all resources."
-  default     = "us-east4-a"
+  default     = "asia-south1-c"
 }
 
 variable "prefix" {
@@ -31,8 +31,8 @@ variable "prefix" {
 variable "machine_type" {
   type        = string
   description = "Machine type used for all compute instances"
-  default     = "n1-standard-2"
-#  default     = "e2-medium" 
+#  default     = "n1-standard-2"
+  default     = "e2-medium" 
 }
 
 variable "rancher_kubernetes_version" {
