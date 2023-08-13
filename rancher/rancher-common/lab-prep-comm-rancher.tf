@@ -110,3 +110,8 @@ output "learner10_custom_cluster_command" {
   value       = rancher2_cluster_v2.learner10_cluster.cluster_registration_token.0.insecure_node_command
   description = "Docker command used to add a node to the learner2 cluster"
 }
+
+output "learner11_custom_cluster_command" {
+  value       = rancher2_cluster_v2.learner11_cluster.cluster_registration_token.0.insecure_node_command
+  description = "Docker command used to add a node to the learner2 cluster"
+}
