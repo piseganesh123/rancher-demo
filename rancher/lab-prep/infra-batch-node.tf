@@ -68,7 +68,6 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
     {
       register_command = module.rancher_common.learner2_cluster #custom_cluster_command
       public_ip        = google_compute_address.learner2_node_address.address
-      public_ip        = self.public_ip
     }
   )
 
@@ -87,4 +86,28 @@ resource "google_compute_instance" "learner2_node"{ #"quickstart_node"
 #      private_key = "../gcp/id_rsa"
     }
   }
+}
+
+module "rancher_common" {
+  source = "../rancher-common"
+
+#  node_public_ip             = google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip
+#  node_internal_ip           = google_compute_instance.rancher_server.network_interface.0.network_ip
+#  node_username              = local.node_username
+#  ssh_private_key_pem        = tls_private_key.global_key.private_key_pem
+#  rancher_kubernetes_version = var.rancher_kubernetes_version
+
+#  cert_manager_version    = var.cert_manager_version
+#  rancher_version         = var.rancher_version
+#  rancher_helm_repository = var.rancher_helm_repository
+
+  rancher_server_dns = join(".", ["rancher", google_compute_instance.rancher_server.network_interface.0.access_config.0.nat_ip, "sslip.io"])
+  admin_password     = var.rancher_server_admin_password
+
+  workload_kubernetes_version = var.workload_kubernetes_version
+
+ #worker node names 
+  workload_cluster_name       = "quickstart-gcp-custom"
+  learner1_cluster_name       = "learner1-cluster"
+  learner2_cluster_name       = "learner2-cluster"
 }
