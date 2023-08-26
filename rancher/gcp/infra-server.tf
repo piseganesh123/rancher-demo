@@ -6,7 +6,7 @@ resource "tls_private_key" "global_key" {
 }
 
 resource "local_sensitive_file" "ssh_private_key_pem" {
-  filename        = "${path.module}/id_rsa"
+  filename        = "${path.module}/id_rsa_${formatdate("MM-DD", timestamp())}"
   content         = tls_private_key.global_key.private_key_pem
   file_permission = "0600"
 }
